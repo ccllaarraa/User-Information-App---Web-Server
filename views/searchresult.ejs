@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<head>
+
+</head>
+<body>
+
+<!--  takes in the post request from your form, then displays matching users on a new page. Users should be matched based on whether either their first or last name contains the input string. 
+for loop in the data
+if name or last name equals data then display all the info on another page
+-->
+
+<% for (var i = 0; i < user.length; i++) { %>
+	<% if (newData.searchBarUser === user[i].firstname || newData.searchBarUser === user[i].lastname){ %>
+<p>	<!-- then return --> <%= user[i].firstname + ' ' + user[i].lastname + ' ' + user[i].email %> </p>	
+<% } %><!-- .searchBarUser because in the index.ejs user is there to specify the line that we are talking about , dont use obj but its keyname wich is user-->
+<% } %>
+
+</body>
+
+</html>
+
