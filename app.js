@@ -63,7 +63,7 @@ app.post('/', function (req, res) {
         //now push new user to the array in .json file
         obj.push(newUser);
 //convert it to a legible format for json by stringifying it
-        let newJson = JSON.stringify(parsedData);
+        let newJson = JSON.stringify(obj, null, 2);//2 is the space
 
         fs.writeFile('./users.json', newJson, (err, data) => {
             if (err) {throw err}
