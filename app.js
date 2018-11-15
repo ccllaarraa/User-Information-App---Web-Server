@@ -72,6 +72,38 @@ app.post('/', function (req, res) {
     res.redirect('/');
 });
 
+//request from searchbar.ejs, aka ajax post request
+app.post("/invisibleURL", function (req,res){ //5
+ // console.log(req.body.search) //.search to specify the value (and not the key "search :") from our object searchField
+     fs.readFile('./users.json', (err, data) => { //6
+        if (err) {throw err}
+          //first convert json file
+        const obj = JSON.parse(data); 
+       // console.log(obj)
+         let result = [];
+       obj.forEach(function (element) { //7 
+       //foreach always needs a parameter, that we called here "element"
+         // console.log(element.firstname);
+       
+         if (element.firstname.startsWith(req.body.search) || element.lastname.startsWith(req.body.search) ) { 
+          //console.log("success")
+           result.push(element);  //8
+       console.log(result);
+
+     }
+       
+
+       })
+      res.send(result);
+      });
+
+
+})
+
+//5. we type app.post, and the console log to check if we receive the file , req.body
+//6. we chekc the json file with the fsreadfile
+//7. we compare the typed stuff and json
+//8. you push it
 
 app.listen(3000, function () {
    console.log('Example app listening on port 3000!')

@@ -6,12 +6,50 @@
 
 
 <form method="post" action="/searchresult"> <!-- /searchresult is the page it will be redericted or "posted" lets say -->
-	<input name="searchBarUser" type="text" placeholder="Search..">
+	<input name="searchBarUser" id= "search" type="text" placeholder="Search.." autocomplete="off" >
 	<br>
-	<input type="submit"></input>
-
-
+	<input type="submit"></input> </form>
+	<div id="filter-records"></div> <!--We have created a empty filter-records div which will contain filtered json data based on search string. -->
 </body>
 
 </html>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script>
+
+
+
+$(document).ready(function() {
+ 	$("#search").keyup(function(){ //1
+ 		  var searchField = { //2
+ 		  	search : $(this).val() //The val() method returns or sets the value attribute of the selected elements.
+ 		  }
+		//console.log(searchField);
+
+	$.post("/invisibleURL", searchField, function(data,status){ //3
+		//console.log(data)
+		for (var i = 0; i < data.length; i++){
+		$("#filter-records").html('<li> '+ data[i].firstname +' '+ data[i].lastname +' </li>');
+	 }
+	})
+
+
+
+//1. key button , key up, jQuery method
+// 2. you try to get the info from the searchfield
+//3. post request , still on client side
+// 4. then we switch to the app.js file, server (steps 5 to 8 in app.js)
+
+//9. place text in div with jquery, using the append method, actually using html method
+
+
+
+
+
+ 	}
+
+ 	)
+})
+
+</script>
