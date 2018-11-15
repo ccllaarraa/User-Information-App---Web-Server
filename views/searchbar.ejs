@@ -18,10 +18,16 @@
 
 <script>
 
-
+var start = 0
 
 $(document).ready(function() {
- 	$("#search").keyup(function(){ //1
+ 	$("#search").keyup(function(){ 	//1 
+ 		const keyNew = new Date (); //new Date() creates a new date object with the current date and time
+ 		
+ 		console.log(keyNew - start);
+		if (keyNew - start > 300) {
+
+ 
  		  var searchField = { //2
  		  	search : $(this).val() //The val() method returns or sets the value attribute of the selected elements.
  		  }
@@ -31,11 +37,15 @@ $(document).ready(function() {
 		//console.log(data)
 		for (var i = 0; i < data.length; i++){
 		$("#filter-records").html('<li> '+ data[i].firstname +' '+ data[i].lastname +' </li>');
-	 }
+		 }
 	})
+	start = new Date ();
 
-
-
+} else {
+		console.log('test')
+	}
+});
+	});
 //1. key button , key up, jQuery method
 // 2. you try to get the info from the searchfield
 //3. post request , still on client side
@@ -46,10 +56,5 @@ $(document).ready(function() {
 
 
 
-
- 	}
-
- 	)
-})
 
 </script>
