@@ -72,6 +72,8 @@ app.post('/', function (req, res) {
     res.redirect('/');
 });
 
+
+//autocomplete
 //request from searchbar.ejs, aka ajax post request
 app.post("/invisibleURL", function (req,res){ //5
  // console.log(req.body.search) //.search to specify the value (and not the key "search :") from our object searchField
